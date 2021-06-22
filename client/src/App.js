@@ -55,14 +55,14 @@ class App extends React.Component{
           </ul>
         </nav>
         <Switch>
-          <Route exact path="/scores">
-            <ScoresContainer />
-          </Route>
-          <Route exact path="/game">
+          <Route path="/game">
             <GameContainer loggedIn={this.state.loggedIn}/>
           </Route>
+          <Route path="/scores">
+            <ScoresContainer />
+          </Route>
           <Route exact path="/">
-            <LandingPage requestUsername={this.requestUsername}/>
+            <LandingPage loggedIn={this.state.loggedIn} requestUsername={this.requestUsername}/>
           </Route>
         </Switch>
       </div>
