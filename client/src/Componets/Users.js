@@ -2,7 +2,7 @@ import React from 'react'
 
 class Users extends React.Component{
     render() {
-        <div></div>
+        return <div>User list goes here</div>
     }
 }
 

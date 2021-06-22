@@ -1,19 +1,22 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route, Link} from "../node_modules/react-router-dom";
 
-import logo from './logo.svg';
+
 import './App.css';
+import ScoresContainer from "./Containers/ScoresContainer";
+import Users from "./Componets/Users";
+import LandingPage from "./Containers/LandingPage";
+import GameContainer from "./Containers/GameContainer";
 
 class App extends React.Component{
 
-  componentDidMount() {
-    const script = document.createElement("script");
+  state = {
+    name: "",
+    score: "",
+    role: ""
+  }
 
-    script.src = "../src/game/game.js";
-    script.async = true;
 
-    document.body.appendChild(script);
-}
   render(){
   return (
     <div className="App">
@@ -24,7 +27,10 @@ class App extends React.Component{
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Login</Link>
+            </li>
+            <li>
+              <Link to="/game">Game</Link>
             </li>
             <li>
               <Link to="/scores">Scores</Link>
@@ -35,7 +41,20 @@ class App extends React.Component{
             </li>
           </ul>
         </nav>
-
+        <Switch>
+          <Route exact path="/scores">
+            <ScoresContainer />
+          </Route>
+          <Route exact path="/game">
+            <GameContainer/>
+          </Route>
+          <Route exact path="/users">
+            <Users/>
+          </Route>
+          <Route exact path="/">
+            <LandingPage/>
+          </Route>
+        </Switch>
       </div>
     </Router>
     </div>
