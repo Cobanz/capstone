@@ -35,10 +35,7 @@ class App extends React.Component{
             <li>
               <Link to="/scores">Scores</Link>
             </li>
-            <li>
-            {/* users will need to set conditional where only a person logged in as admin can see it */}
-              <Link to="/users">Users</Link>
-            </li>
+         
           </ul>
         </nav>
         <Switch>
@@ -47,9 +44,6 @@ class App extends React.Component{
           </Route>
           <Route exact path="/game">
             <GameContainer/>
-          </Route>
-          <Route exact path="/users">
-            <Users/>
           </Route>
           <Route exact path="/">
             <LandingPage/>
