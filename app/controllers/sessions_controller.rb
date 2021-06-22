@@ -1,10 +1,11 @@
+require 'byebug'
 class SessionsController < ApplicationController
 
-    skip_before_action :authorize, only: :create
+    skip_before_action :authorize
 
     def create
-        
-        user = User.find_by(username: params[:username])
+        # byebug
+        user = User.find_by(name: params[:_json])
             if user
                 session[:user_id] = user.id
                 render json: user

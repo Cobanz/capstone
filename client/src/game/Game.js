@@ -6,9 +6,6 @@ import up from './sprites/back.png'
 
 
 
-
-
-
 const MOVE_SPEED = 120
 
 k.loadRoot('https://i.imgur.com/')
@@ -230,6 +227,6 @@ k.scene("lose", ({ score }) => {
 
 // k.start('test')
 
-k.start("game", { level: 0, score: 0})
+export const gameStart = () => {k.start("game", { level: 0, score: 0})}
 
 

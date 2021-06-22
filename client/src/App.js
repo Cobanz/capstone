@@ -3,17 +3,33 @@ import {BrowserRouter as Router, Switch, Route, Link} from "../node_modules/reac
 
 
 import './App.css';
-import ScoresContainer from "./Containers/ScoresContainer";
-import Users from "./Componets/Users";
-import LandingPage from "./Containers/LandingPage";
-import GameContainer from "./Containers/GameContainer";
+import ScoresContainer from "./Score/ScoresContainer";
+import LandingPage from "./LandingPage/LandingPage";
+import GameContainer from "./Game/GameContainer";
 
 class App extends React.Component{
 
   state = {
     name: "",
     score: "",
-    role: ""
+    role: "",
+    loggedIn: false
+  }
+
+  requestUsername = (currentUser) => {
+    let postOptions = {
+      method: 'POST',
+      headers:{
+        "Content-Type": 'application/json',
+        Accepts: 'application/json'
+      },
+      body: JSON.stringify(currentUser)
+    }
+    fetch("/login", postOptions)
+    // fetch("/login")
+    .then(res =>res.json())
+    .then(addUser => this.setState({name: addUser.name, role:addUser.role, loggedIn: true}))
+
   }
 
 
@@ -43,10 +59,10 @@ class App extends React.Component{
             <ScoresContainer />
           </Route>
           <Route exact path="/game">
-            <GameContainer/>
+            <GameContainer loggedIn={this.state.loggedIn}/>
           </Route>
           <Route exact path="/">
-            <LandingPage/>
+            <LandingPage requestUsername={this.requestUsername}/>
           </Route>
         </Switch>
       </div>

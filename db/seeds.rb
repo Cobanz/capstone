@@ -13,6 +13,6 @@ admin = User.create(name: 'admin', role: 'admin')
 
 p1 = User.create(name:'bob', role: 'player')
 
-s1 = Score.create(user_id: p1, score:5)
+s1 = Score.create(user_id: 2, score:5)
 
 a1 = Score.create(user_id:admin, score:9999)
