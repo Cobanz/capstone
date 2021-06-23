@@ -10,7 +10,8 @@ class ScoresContainer extends React.Component{
         scores:[],
         name:'',
         score:'',
-        id:''
+        id:'',
+        role:''
     }
   
 
@@ -18,7 +19,8 @@ class ScoresContainer extends React.Component{
     fetch('/me')
     .then(res=> res.json())
     .then(data => this.setState({
-        id: data.id
+        id: data.id,
+        role: data.role
     }))
    
 
@@ -26,76 +28,27 @@ class ScoresContainer extends React.Component{
      
    }
 
-
-
-   getScore=()=>{
+   getScores=()=>{
             const userId= this.state.id
-             fetch(`/score/${userId}`)
+            if(this.state.scores.length<1){
+                if(this.state.role=='admin'){
+                console.log('im admin')
+                  fetch(`/score`)
                 .then(res=> res.json())
                 .then(data => this.setState({
                     scores: data
                 }))
+
+            }else{
+                console.log('im Not admin')
+                fetch(`/score/${userId}`)
+                    .then(res=> res.json())
+                    .then(data => this.setState({
+                        scores: data
+                    }))
+            }
    }
-
-
-
-//    renderData=()=>{
-
-    // let row=1
-
-    // {this.state.scores.map(score=>{
-    //           return(
-    //       <tr>
-    //           <th>{row++}</th>
-    //           <td>{score.user.name}</td>
-    //           <td>{score.score}</td>
-    //       </tr>
-    //           )
-    //       })}
-        
-    //   function ScoresContainer(){
-    //       const [id,setId]=useState()
-    //       const [score,setScore]=useState([])
-
-
-    //         useEffect(()=>{
-    //             console.log(id)
-    //             fetch('/me')
-    //             .then(res=> res.json())
-    //             .then(data => setId(data.id)
-    //         )})
-                
-            
-    //             function getScore(){
-    //                     console.log("score"+id)
-    //                     fetch(`/score/${id}`)
-    //                     .then(res=> res.json())
-    //                     .then(data => setScore(data)) 
-
-    //             }
-                
-
-     
-
-
-    //         return(
-    //             <div>
-    //                 {score>0?(getScore()):console.log('null2')}
-    //             </div>
-    //         )
-
-    //   }
-    //   export default ScoresContainer;
-
-
-  
-
-
-//      }
-
-
-
-   
+   }
 
 
 
@@ -105,7 +58,7 @@ class ScoresContainer extends React.Component{
         return (
             <div>
                 {/*put ()  after getScore */}
-                {this.getScore}
+                {this.getScores()}
             <MDBTable>
       <MDBTableHead>
         <tr>
@@ -123,17 +76,10 @@ class ScoresContainer extends React.Component{
                 <th>{row++}</th>
                 <td>{score.user.name}</td>
                 <td>{score.score}</td>
+                {this.state.role==='admin' ? <td>delete</td>:null}
             </tr>
                 )
             })}
-
-
-
-            
-                
-          {/* {this.renderData()} */}
-          
-           
             
       </MDBTableBody>
     </MDBTable>
