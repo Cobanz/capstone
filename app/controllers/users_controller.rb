@@ -2,7 +2,8 @@ class UsersController < ApplicationController
     skip_before_action :authorize, only: :create
   
     def create
-      user = User.create!(user_params)
+        user = User.create!(name: params[:_json], role: 'player')
+        # byebug
       session[:user_id] = user.id
       render json: user, status: :created
     end
@@ -19,9 +20,9 @@ class UsersController < ApplicationController
   
     private
   
-    def user_params
-        defaults = {role: 'player'}
-        params.permit(:name, :role).reverse_merge(defaults)
-    end
+    # def user_params
+    #     defaults = {role: 'player'}
+    #     params.permit(:name, :role).reverse_merge(defaults)
+    # end
   
   end

@@ -6,6 +6,7 @@ import './App.css';
 import ScoresContainer from "./Score/ScoresContainer";
 import LandingPage from "./LandingPage/LandingPage";
 import GameContainer from "./Game/GameContainer";
+import CreateLogIn from "./CreateLogIn/CreateLogIn";
 
 class App extends React.Component{
 
@@ -32,6 +33,21 @@ class App extends React.Component{
 
   }
 
+  createUsername = (newPlayer) => {
+    let postOptions  = {
+      method: 'POST',
+      headers:{
+        "Content-Type": 'application/json',
+        Accepts: 'application/json'
+      },
+      body: JSON.stringify(newPlayer)
+    }
+    fetch('/newuser', postOptions)
+    .then(res => res.json())
+    .then(addPlayer => this.setState({name: addPlayer.name, role:addPlayer.role, loggedIn: true}))
+
+  }
+
 
   render(){
   return (
@@ -41,7 +57,7 @@ class App extends React.Component{
      <Router>
       <div className="App">
         <nav>
-          <ul>
+          <ul className="navBar">
             <li>
               <Link to="/">Login</Link>
             </li>
@@ -50,6 +66,9 @@ class App extends React.Component{
             </li>
             <li>
               <Link to="/scores">Scores</Link>
+            </li>
+            <li>
+              <Link to="/newUser">Create New Player</Link>
             </li>
          
           </ul>
@@ -60,6 +79,9 @@ class App extends React.Component{
           </Route>
           <Route path="/scores">
             <ScoresContainer />
+          </Route>
+          <Route path="/newUser">
+            <CreateLogIn createUsername={this.createUsername}/>
           </Route>
           <Route exact path="/">
             <LandingPage loggedIn={this.state.loggedIn} requestUsername={this.requestUsername}/>

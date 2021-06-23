@@ -1,14 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { MDBInput } from 'mdb-react-ui-kit';
 import "./LandingPage.css"
 import {useHistory} from 'react-router-dom'
 
-class LandingPage extends React.Component {
+function LandingPage(props) {
 
-    state = {
-        name: ""
-    }
-
+    const [name, setName] = useState("")
+    const history = useHistory();
 
     // onSubmit = (e) => {
     //     e.preventDefault()
@@ -18,47 +16,44 @@ class LandingPage extends React.Component {
     // }
 
 
-    onNewUsername = e => {
-        this.setState({
-            name: e.target.value
-        })
+   const onNewUsername = e => {
+       setName(
+         e.target.value
+        )
     }
 
-    history = useHistory();
+   
 
-    loggedIn = () => { 
-        if (this.props.loggedIn) {
-            <Link to='/game'></Link>
-        }
- }
+//     const loggedIn = () => { 
+//         if (this.props.loggedIn) {
+//             <Link to='/game'></Link>
+//         }
+//  }
 
- handleSubmit(event) {
+function handleSubmit(event) {
     event.preventDefault();
   
-    try {
-    Auth.signIn(this.state.name);
-      userHasAuthenticated(true);
+  if (props.loggedIn === true) {
       history.push("/game");
-    } catch (e) {
-      alert(e.message);
-    }
-    this.props.requestUsername(this.state.name)
+    } 
+    props.requestUsername(name)
   }
 
-    render() {
+    
 
 
         return(
-            <div className="Username">this will be the log in form
-            <form onSubmit={this.handleSubmit}>
-            <MDBInput label='Username' id='typeText' type='text' onChange={this.onNewUsername} value={this.state.name} />
+            <div className="Username">
+            <form onSubmit={handleSubmit}>
+            <MDBInput label='Username' id='typeText' type='text' onChange={onNewUsername} value={name} />
             {/* <Link to='/game'> */}
-            <input type="submit" name="submit" value="Log-in" className="submit" onClick={this.loggedIn()}/>
+            <input type="submit" name="submit" value="Log-in" className="submit"/>
             {/* </Link> */}
             </form>
             </div>
         )
     }
-}
+
 
 export default LandingPage
+
