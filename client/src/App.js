@@ -29,7 +29,7 @@ class App extends React.Component{
     fetch("/login", postOptions)
     // fetch("/login")
     .then(res =>res.json())
-    .then(addUser => this.setState({name: addUser.name, role:addUser.role, loggedIn: true}))
+    .then(addUser => addUser.name? this.setState({name: addUser.name, role:addUser.role, loggedIn: true}):null)
 
   }
 

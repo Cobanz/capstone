@@ -32,18 +32,20 @@ function LandingPage(props) {
 
 function handleSubmit(event) {
     event.preventDefault();
-  
-  if (props.loggedIn === true) {
-      history.push("/game");
-    } 
     props.requestUsername(name)
+  
   }
 
-    
+    function gameRedirect() {
+        if (props.loggedIn === true) {
+            history.push("/game");
+          } 
+    }
 
 
         return(
             <div className="Username">
+            {gameRedirect()}
             <form onSubmit={handleSubmit}>
             <MDBInput label='Username' id='typeText' type='text' onChange={onNewUsername} value={name} />
             {/* <Link to='/game'> */}
