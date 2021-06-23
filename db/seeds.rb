@@ -16,3 +16,9 @@ p1 = User.create(name:'bob', role: 'player')
 s1 = Score.create(user_id: 2, score:5)
 
 a1 = Score.create(user_id:admin, score:9999)
+
+p2 = User.create(name:'jay', role: 'player')
+
+s2 = Score.create(user_id: 3, score:20)
+s3 = Score.create(user_id: 3, score:10)
+
