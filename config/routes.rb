@@ -14,11 +14,11 @@ Rails.application.routes.draw do
   # create/post scores
   post "/score", to: "scores#create"
   # get highscores
-  get "/score", to: "scores#highscores"
+  # get "/score", to: "scores#highscores"
   # show all scores
   get "/score", to: "scores#index"
   # show personal scores
-  get "/score", to: "scores#show"
+  get "/score/:id", to: "scores#show"
 
 
   
