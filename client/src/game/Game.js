@@ -273,6 +273,7 @@ const maps = [
   k.action('skeletor', (s) => {
     s.move(0, s.dir * SKELETOR_SPEED)
     s.timer -= k.dt()
+    s.resolve()
     if (s.timer <= 0) {
       s.dir = - s.dir
       s.timer = k.rand(5)
