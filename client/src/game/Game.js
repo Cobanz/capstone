@@ -1,9 +1,22 @@
 
 import k from '../kaboom'
-import down from './sprites/front.png'
-import right from './sprites/right.png'
-import left from './sprites/left.png'
-import up from './sprites/back.png'
+import down from './sprites/down2.png'
+import right from './sprites/right2.png'
+import left from './sprites/left2.png'
+import up from './sprites/up2.png'
+import enemy from './sprites/enemy.png'
+import topwall from './sprites/topwall.png'
+import topdoor from './sprites/door.png'
+import bottomwall from './sprites/bottomwall.png'
+import tree from './sprites/tree.png'
+import leftwall from './sprites/leftwall.png'
+import rightwall from './sprites/rightwall.png'
+import money from './sprites/money.png'
+import gameSong from './sprites/gameSong.mp3'
+import branches from './sprites/branches.png'
+import door from './sprites/door2.png'
+import cactus from './sprites/cactus.png'
+
 
 
 
@@ -14,126 +27,138 @@ k.loadSprite('link-going-left', left)
 k.loadSprite('link-going-right', right)
 k.loadSprite('link-going-down', down)
 k.loadSprite('link-going-up', up)
-k.loadSprite('left-wall', 'rfDoaa1.png')
-k.loadSprite('top-wall', 'QA257Bj.png')
-k.loadSprite('bottom-wall', 'vWJWmvb.png')
-k.loadSprite('right-wall', 'SmHhgUn.png')
+k.loadSprite('left-wall', leftwall)
+k.loadSprite('top-wall', topwall)
+k.loadSprite('bottom-wall', bottomwall)
+k.loadSprite('right-wall', rightwall)
 k.loadSprite('bottom-left-wall', 'awnTfNC.png')
 k.loadSprite('bottom-right-wall', '84oyTFy.png')
 k.loadSprite('top-left-wall', 'xlpUxIm.png')
 k.loadSprite('top-right-wall', 'z0OmBd1.jpg')
-k.loadSprite('top-door', 'U9nre4n.png')
-k.loadSprite('fire-pot', 'I7xSp7w.png')
+k.loadSprite('top-door', topdoor)
+k.loadSprite('fire-pot', tree)
 k.loadSprite('left-door', 'okdJNls.png')
-k.loadSprite('lanterns', 'wiSiY09.png')
+k.loadSprite('lanterns', branches)
 k.loadSprite('slicer', 'c6JFi5Z.png')
-k.loadSprite('skeletor', 'Ei1VnX8.png')
+k.loadSprite('skeletor', enemy)
 k.loadSprite('kaboom', 'o9WizfI.png')
-k.loadSprite('stairs', 'VghkL08.png')
+k.loadSprite('stairs', door)
 k.loadSprite('bg', 'u4DVsx6.png')
+k.loadSprite('money', money)
+k.loadSprite('cactus', cactus)
+
+const audio= new Audio(gameSong)
+
 
 // k.scene('main',()=>{
 k.scene("game", ({ level, score }) => {
 
-  k.layers(['bg', 'obj', 'ui'], 'obj')
+
+audio.play()
+
+k.layers(['bg', 'obj', 'ui'], 'obj')
 
 
 const maps = [
   [
-    'ycc)cc^ccccccccw',
+    ' ccccc^cccccccc ',
     'a              b',
     'a      *       b',
-    'a    (         b',
-    'a              b',
-    'a              b',
+    'a    (      p  b',
+    '%         (    b',
+    'a    p  }      b',
     'a    (         b',
     'a   *          b',
-    'a              b',
-    'xdd)dd)ddddddddz',
+    'a          p   b',
+    ' dddddddddddddd ',
   ],
   [
-    'yccccccccw',
-    'a        b',
-    ')        )',
-    'a        b',
+    ' cccccccc ',
+    'a     p  b',
     'a        b',
     'a    $   b',
-    ')   }    )',
     'a        b',
-    'xddddddddz',
+    '      p  b',
+    'a   }    b',
+    'a        b',
+    ' dddddddd ',
   ],
   [
-    'ycccccccccccccw',
+    'ccccccccccccccc',
     'a             b',
-    'a  ((      $( b',
+    'a  ((    p $( b',
     'a         }   b',
     'a     } *     b',
-    'a             b',
-    'a  ()      () b',
+    '              b',
+    'a  ()   p  () b',
     'a       }     b',
-    'xdddddddddddddz'
+    'ddddddddddddddd'
   ],
   [
-    'ycccccccccccccccccccw',
+    'ccccccccccccccccccccc',
     'a                   b',
-    'a         *         b',
+    'a         *     p   b',
     'a       ()  *      }b',
-    'a       ()          b',
+    'a     p ()          b',
     'a       ()  }       b',
     'a((((((((           b',
-    'a      ()    }    } b',
+    'a    p ()    }    } b',
     'a      ()    *      b',
-    'a           *       b',
-    'a  $                b',
-    'xdddddddddddddddddddz'
+    '           *        b',
+    'a  $             p  b',
+    'ddddddddddddddddddddd'
   ],
   [
-    'ycccccccccccccccccccccccccccw',
+    'ccccccccccccccccccccccccccccc',
     'a       ()      }           b',
-    'a       ()                  b',
-    'a       ()      }           b',
-    'a       ()      )           b',
+    'a       ()            p     b',
+    'a       ()   p  }           b',
+    'a     p ()      )           b',
     'a       ()*****((((((((((  (b',
-    'a       ()     (            b',
+    '       ()     (             b',
     'a       ()     )            b',
-    'a       ()     (     **     b',
-    'a       }      )            b',
-    'a              (           $b',
-    'xdddddddddddddddddddddddddddz'
+    'a              (     **     b',
+    'a       p                   b',
+    'a                      p   $b',
+    'ddddddddddddddddddddddddddddd'
   ],
   [
-    'ycccccccccccccccw',
-    'a               b',
+    'ccccccccccccccccc',
+    'a    p        p b',
     'a (  )  (  )  ( b',
     'a               b',
-    'a            m  b',
-    'a               b',
+    'a       p    m  b',
+    '                b',
     'a (  )  (  )  ( b',
-    'a               b',
-    'xdddddddddddddddz'
+    'a    p          b',
+    'ddddddddddddddddd'
   ]
-
 ]
 
 
+
+
   const levelCfg = {
-    width: 48,
+    width: 63,
     height: 48,
-    'a': [k.sprite('left-wall'), k.solid(), 'wall'],
-    'b': [k.sprite('right-wall'), k.solid(), 'wall'],
-    'c': [k.sprite('top-wall'), k.solid(), 'wall'],
-    'd': [k.sprite('bottom-wall'), k.solid(), 'wall'],
+    'a': [k.sprite('left-wall'), k.solid(), 'wall',{scale:1.4}],
+    'b': [k.sprite('right-wall'), k.solid(), 'wall',{scale:.5}],
+    'c': [k.sprite('top-wall'), k.solid(), 'wall',{scale:.5}],
+    'd': [k.sprite('bottom-wall'), k.solid(), 'wall',{scale:.5}],
     'w': [k.sprite('top-right-wall'), k.solid(), 'wall'],
     'x': [k.sprite('bottom-left-wall'), k.solid(), 'wall'],
     'y': [k.sprite('top-left-wall'), k.solid(), 'wall'],
     'z': [k.sprite('bottom-right-wall'), k.solid(), 'wall'],
     '%': [k.sprite('left-door'), k.solid(), 'door'],
-    '^': [k.sprite('top-door'), 'next-level'],
+    '^': [k.sprite('top-door'), 'next-level',{scale:.8}],
     '$': [k.sprite('stairs'), 'next-level'],
     '*': [k.sprite('slicer'), 'slicer', { dir: -1 }, 'dangerous'],
-    '}': [k.sprite('skeletor'), 'dangerous', 'skeletor', { dir: -1, timer: 0 }],
-    ')': [k.sprite('lanterns'), k.solid(), 'wall'],
-    '(': [k.sprite('fire-pot'), k.solid(), ],
+    '}': [k.sprite('skeletor'), k.solid(),'dangerous', 'skeletor', { dir: -1, timer: 0,scale:2 }],
+    ')': [k.sprite('lanterns'), k.solid()],
+    '(': [k.sprite('fire-pot'), k.solid()],
+    'm': [k.sprite('money'),'dangerous'],
+    'p': [k.sprite('cactus'), k.solid(),{scale:2}],
+
   }
   k.addLevel(maps[level], levelCfg)
 
@@ -145,7 +170,7 @@ const maps = [
 ])
   
 
-  const scoreLabel = k.add([
+   const scoreLabel = k.add([
     k.text(score),
     k.pos(400, 450),
     k.layer('ui'),
@@ -160,11 +185,16 @@ const maps = [
   const player = k.add([
     k.sprite('link-going-right'),
     k.pos(5, 190),
+    k.scale(1.5),
     {
       // right by default
       dir: k.vec2(1, 0),
     }
   ])
+
+  
+
+
 
   player.action(() => {
     player.resolve()
@@ -174,6 +204,7 @@ const maps = [
     k.go("game", {
       level: (level + 1) % maps.length,
       score: scoreLabel.value
+      
     })
   })
 
@@ -216,7 +247,7 @@ const maps = [
     k.destroy(d)
   })
 
-  k.collides('kaboom', 'skeletor', ( j,s) => {
+  k.collides('kaboom', 'skeletor', (j, s) => {
     k.camShake(4)
     k.wait(1, () => {
       k.destroy(j)
@@ -224,6 +255,7 @@ const maps = [
     k.destroy(s)
     scoreLabel.value++
     scoreLabel.text = scoreLabel.value
+    addScore(scoreLabel.value)
   })
 
   const SLICER_SPEED = 100
@@ -245,6 +277,7 @@ const maps = [
       s.dir = - s.dir
       s.timer = k.rand(5)
     }
+    
   })
 
   k.collides('skeletor', 'wall', (s) => {
@@ -256,6 +289,7 @@ const maps = [
     k.go('lose', { score: scoreLabel.value})
       window.value= scoreLabel.value
       test(window.value)
+      audio.pause()
   })
   
 
@@ -288,6 +322,11 @@ function test(score){
   .then(data=> console.log(data))
 
   
+}
+
+
+function addScore(score){
+ return score+score
 }
 
 
