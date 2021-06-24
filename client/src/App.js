@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route, Link} from "../node_modules/react-router-dom";
 
-import logo from "./SpaceCowboyLogo.png"
+import logo from './SpaceCowboyLogo2.jpeg'
 import './App.css';
 import ScoresContainer from "./Score/ScoresContainer";
 import LandingPage from "./LandingPage/LandingPage";
