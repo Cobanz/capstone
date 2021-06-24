@@ -146,7 +146,7 @@ const maps = [
   
 
   const scoreLabel = k.add([
-    k.text('0'),
+    k.text(score),
     k.pos(400, 450),
     k.layer('ui'),
     {
