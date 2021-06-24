@@ -34,10 +34,10 @@ k.loadSprite('bg', 'u4DVsx6.png')
 // k.scene('main',()=>{
 k.scene("game", ({ level, score }) => {
 
-k.layers(['bg', 'obj', 'ui'], 'obj')
+  k.layers(['bg', 'obj', 'ui'], 'obj')
 
 
-const maps = [
+  const maps = [
     [
       'ycc)cc^ccccccccw',
       'a              b',
@@ -45,7 +45,7 @@ const maps = [
       'a    (         b',
       '%              b',
       'a              b',
-      'a    (         b',                  
+      'a    (         b',
       'a   *          b',
       'a              b',
       'xdd)dd)ddddddddz',
@@ -60,10 +60,34 @@ const maps = [
       ')   }    )',
       'a        b',
       'xddddddddz',
+    ],
+    [
+      'ycccccccccccccw',
+      'a             b',
+      'a  ((      $( b',
+      'a         }   b',
+      'a     } *     b',
+      'a             b',
+      'a  ()      () b',
+      'a       }     b',
+      'xdddddddddddddz'
+    ],
+    [
+      'ycccccccccccccccccccccccw',
+      'a                      $b',
+      'a         *             b',
+      'a          *           }b',
+      'a                       b',
+      'a           }           b',
+      'a                       b',
+      'a            }        } b',
+      'a            *          b',
+      'a           *           b',
+      'a                       b',
+      'xdddddddddddddddddddddddz'
     ]
 
   ]
-
 
 
   const levelCfg = {
@@ -87,14 +111,13 @@ const maps = [
   }
   k.addLevel(maps[level], levelCfg)
 
-//   const floor=k.add([k.sprite('bg'),
-//    k.layer('bg')
-                
+  const floor = k.add([k.sprite('bg'),
+  k.layer('bg'),
+  k.scale(1.75)
+  ])
 
-// ])
-  
 
-   const scoreLabel = k.add([
+  const scoreLabel = k.add([
     k.text('0'),
     k.pos(400, 450),
     k.layer('ui'),
@@ -105,13 +128,13 @@ const maps = [
   ])
 
   k.add([k.text('level ' + parseInt(level + 1)), k.pos(400, 485), k.scale(2)])
-  
+
   const player = k.add([
     k.sprite('link-going-right'),
     k.pos(5, 190),
     {
       // right by default
-      dir: k.vec2(1,0),
+      dir: k.vec2(1, 0),
     }
   ])
 
@@ -129,25 +152,25 @@ const maps = [
   k.keyDown('left', () => {
     player.changeSprite('link-going-left')
     player.move(-MOVE_SPEED, 0)
-    player.dir = k.vec2(-1,0)
+    player.dir = k.vec2(-1, 0)
   })
 
   k.keyDown('right', () => {
     player.changeSprite('link-going-right')
     player.move(MOVE_SPEED, 0)
-    player.dir = k.vec2(1,0)
+    player.dir = k.vec2(1, 0)
   })
 
   k.keyDown('up', () => {
     player.changeSprite('link-going-up')
     player.move(0, -MOVE_SPEED)
-    player.dir = k.vec2(0,-1)
+    player.dir = k.vec2(0, -1)
   })
 
   k.keyDown('down', () => {
     player.changeSprite('link-going-down')
     player.move(0, MOVE_SPEED)
-    player.dir = k.vec2(0,1)
+    player.dir = k.vec2(0, 1)
   })
 
   function spawnKaboom(p) {
@@ -201,23 +224,19 @@ const maps = [
   })
 
   player.overlaps('dangerous', () => {
-    k.go('lose', { score: scoreLabel.value})
+    k.go('lose', { score: scoreLabel.value })
   })
 })
 
 k.scene("lose", ({ score }) => {
-  k.add([k.text(score, 32), origin('center'), k.pos(k.width()/ 2, k.height() /2)])
+  k.add([k.text(score, 32), origin('center'), k.pos(k.width() / 2, k.height() / 2)])
 
-// k.go('hello-world')
-
+  // k.go('hello-world')
 
 })
 
 
 // k.start('main')
-
-
-
 
 
 
@@ -227,6 +246,6 @@ k.scene("lose", ({ score }) => {
 
 // k.start('test')
 
-export const gameStart = () => {k.start("game", { level: 0, score: 0})}
+export const gameStart = () => { k.start("game", { level: 0, score: 0 }) }
 
 

@@ -22,7 +22,7 @@ class ScoresContainer extends React.Component {
                 role: data.role
             }))
 
-
+            // this.getScores()
 
 
     }
@@ -32,7 +32,7 @@ class ScoresContainer extends React.Component {
         if (this.state.scores.length < 1) {
             if (this.state.role === 'admin') {
                 console.log('im admin')
-                fetch(`/score`)
+                fetch('/score')
                     .then(res => res.json())
                     .then(data => this.setState({
                         scores: data
@@ -48,7 +48,6 @@ class ScoresContainer extends React.Component {
             }
         }
     }
-
 
 
     render() {
