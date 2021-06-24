@@ -7,6 +7,7 @@ import ScoresContainer from "./Score/ScoresContainer";
 import LandingPage from "./LandingPage/LandingPage";
 import GameContainer from "./Game/GameContainer";
 import CreateLogIn from "./CreateLogIn/CreateLogIn";
+import GameTest from './Game/Game'
 
 class App extends React.Component{
 
@@ -76,6 +77,7 @@ class App extends React.Component{
         <Switch>
           <Route path="/game">
             <GameContainer loggedIn={this.state.loggedIn}/>
+            {/* <GameTest/> */}
           </Route>
           <Route path="/scores">
             <ScoresContainer />

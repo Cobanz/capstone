@@ -19,9 +19,25 @@ class ScoresController < ApplicationController
     end
 # make a new score for a user
     def create
-        score = Score.create!(score_params)
+        userId=session[:user_id]
+        # byebug
+        score = Score.create!(score: params[:_json] ,user_id: userId)
+        # byebug
+
         render json: score, status: :created
     end
+
+    #deletes individual scores
+    def delete
+        score = Score.find_by(id: params[:id])
+    
+
+        score.destroy
+
+        head :no_content
+    end
+
+
 
     private 
 
