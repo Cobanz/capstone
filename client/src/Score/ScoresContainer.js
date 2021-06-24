@@ -1,7 +1,6 @@
-import React, {useState,useEffect} from 'react'
+import React from 'react'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
-import { useParams } from 'react-router';
-// import { useState } from 'react';
+
 
 
 
@@ -9,9 +8,10 @@ class ScoresContainer extends React.Component{
     state={
         scores:[],
         name:'',
-        score:'',
         id:'',
         role:''
+
+        
     }
   
 
@@ -23,7 +23,7 @@ class ScoresContainer extends React.Component{
         role: data.role
     }))
    
-
+    // {this.getScores()}
 
      
    }
@@ -33,7 +33,7 @@ class ScoresContainer extends React.Component{
             if(this.state.scores.length<1){
                 if(this.state.role=='admin'){
                 console.log('im admin')
-                  fetch(`/score`)
+                  fetch('/score')
                 .then(res=> res.json())
                 .then(data => this.setState({
                     scores: data
@@ -48,6 +48,27 @@ class ScoresContainer extends React.Component{
                     }))
             }
    }
+   }
+
+   handleDelete(scoreObject){
+
+    let newArr=this.state.scores.filter(score=>score!=scoreObject)
+    this.setState({
+        scores:newArr
+    })
+        
+      fetch(`/deletescore/${scoreObject.id}`,{
+          method: "DELETE",
+          headers:{
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(res =>res.json())
+        .then((newScore) => this.setState({scores:newArr}) )
+      
+    
+    // console.log(userId)
+
    }
 
 
@@ -71,12 +92,14 @@ class ScoresContainer extends React.Component{
       
 
       {this.state.scores.map(score=>{
+          
                 return(
             <tr>
                 <th>{row++}</th>
                 <td>{score.user.name}</td>
                 <td>{score.score}</td>
-                {this.state.role==='admin' ? <td>delete</td>:null}
+                {this.state.role==='admin'? 
+                <td onClick={()=>this.handleDelete(score)} >delete</td>:null}
             </tr>
                 )
             })}

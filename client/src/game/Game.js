@@ -1,3 +1,4 @@
+
 import k from '../kaboom'
 import down from './sprites/front.png'
 import right from './sprites/right.png'
@@ -38,31 +39,56 @@ k.layers(['bg', 'obj', 'ui'], 'obj')
 
 
 const maps = [
-    [
-      'ycc)cc^ccccccccw',
-      'a              b',
-      'a      *       b',
-      'a    (         b',
-      '%              b',
-      'a              b',
-      'a    (         b',                  
-      'a   *          b',
-      'a              b',
-      'xdd)dd)ddddddddz',
-    ],
-    [
-      'yccccccccw',
-      'a        b',
-      ')        )',
-      'a        b',
-      'a        b',
-      'a    $   b',
-      ')   }    )',
-      'a        b',
-      'xddddddddz',
-    ]
-
+  [
+    'ycc)cc^ccccccccw',
+    'a              b',
+    'a      *       b',
+    'a    (         b',
+    '%              b',
+    'a              b',
+    'a    (         b',
+    'a   *          b',
+    'a              b',
+    'xdd)dd)ddddddddz',
+  ],
+  [
+    'yccccccccw',
+    'a        b',
+    ')        )',
+    'a        b',
+    'a        b',
+    'a    $   b',
+    ')   }    )',
+    'a        b',
+    'xddddddddz',
+  ],
+  [
+    'ycccccccccccccw',
+    'a             b',
+    'a  ((      $( b',
+    'a         }   b',
+    'a     } *     b',
+    'a             b',
+    'a  ()      () b',
+    'a       }     b',
+    'xdddddddddddddz'
+  ],
+  [
+    'ycccccccccccccccccccccccw',
+    'a                      $b',
+    'a         *             b',
+    'a          *           }b',
+    'a                       b',
+    'a           }           b',
+    'a                       b',
+    'a            }        } b',
+    'a            *          b',
+    'a           *           b',
+    'a                       b',
+    'xdddddddddddddddddddddddz'
   ]
+
+]
 
 
 
@@ -87,11 +113,12 @@ const maps = [
   }
   k.addLevel(maps[level], levelCfg)
 
-//   const floor=k.add([k.sprite('bg'),
-//    k.layer('bg')
+  const floor=k.add([k.sprite('bg'),
+   k.layer('bg'),
+   k.scale(1.75)
                 
 
-// ])
+])
   
 
    const scoreLabel = k.add([
@@ -200,10 +227,19 @@ const maps = [
     s.dir = -s.dir
   })
 
+ 
   player.overlaps('dangerous', () => {
     k.go('lose', { score: scoreLabel.value})
+      window.value= scoreLabel.value
+      test(window.value)
   })
+  
+
+
+
 })
+
+
 
 k.scene("lose", ({ score }) => {
   k.add([k.text(score, 32), origin('center'), k.pos(k.width()/ 2, k.height() /2)])
@@ -214,18 +250,24 @@ k.scene("lose", ({ score }) => {
 })
 
 
-// k.start('main')
+
+function test(score){
+  let postOptions  = {
+    method: 'POST',
+    headers:{
+      "Content-Type": 'application/json',
+      Accepts: 'application/json'
+    },
+    body: JSON.stringify(score)
+  }
+  fetch('/score', postOptions)
+  .then(res => res.json())
+  .then(data=> console.log(data))
+
+  
+}
 
 
-
-
-
-
-// k.scene('test',()=>{
-//     console.log('test screen loaded')
-// })
-
-// k.start('test')
 
 export const gameStart = () => {k.start("game", { level: 0, score: 0})}
 

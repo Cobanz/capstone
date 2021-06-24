@@ -12,10 +12,13 @@ class UsersController < ApplicationController
         render json: @current_user
     end
 
-    def destroy
+    def delete
+      # byebug
         # session[:user_id] = nil
-        @user = User.find!(params[:id])
+        @user = User.find_by(id: params[:id])
         @user.destroy
+
+        head :no_content
     end
   
     private

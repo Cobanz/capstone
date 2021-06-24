@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # show current user
   get "/me", to: "users#show"
   # delete user
-  delete "/deleteuser", to: "users#destroy"
+  delete "/deleteuser/:id", to: "users#delete"
   # create/post scores
   post "/score", to: "scores#create"
   # get highscores
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get "/score", to: "scores#index"
   # show personal scores
   get "/score/:id", to: "scores#show"
+  #deletes individual scores
+  delete '/deletescore/:id', to: 'scores#delete'
 
 
   

@@ -8,8 +8,14 @@ class GameContainer extends React.Component{
 
 
     render() {
-       return <div>{this.props.loggedIn? (gameStart()): "Please Log In To Play"}</div>
+       return (
+       <div>
+           {this.props.loggedIn? (gameStart()): "Please Log In To Play"}
+       </div>
+       )
     }
 }
+
+
 
 export default GameContainer 
