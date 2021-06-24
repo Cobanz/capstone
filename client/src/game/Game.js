@@ -29,7 +29,7 @@ k.loadSprite('link-going-down', down)
 k.loadSprite('link-going-up', up)
 k.loadSprite('left-wall', leftwall)
 k.loadSprite('top-wall', topwall)
-k.loadSprite('bottom-wall', bottomwall)
+k.loadSprite('bottom-wall',bottomwall)
 k.loadSprite('right-wall', rightwall)
 k.loadSprite('bottom-left-wall', 'awnTfNC.png')
 k.loadSprite('bottom-right-wall', '84oyTFy.png')
@@ -54,7 +54,7 @@ const audio= new Audio(gameSong)
 k.scene("game", ({ level, score }) => {
 
 
-audio.play()
+// audio.play()
 
 k.layers(['bg', 'obj', 'ui'], 'obj')
 
@@ -78,7 +78,7 @@ const maps = [
     'a        b',
     'a    $   b',
     'a        b',
-    '      p  b',
+    '%     p  b',
     'a   }    b',
     'a        b',
     ' dddddddd ',
@@ -89,7 +89,7 @@ const maps = [
     'a  ((    p $( b',
     'a         }   b',
     'a     } *     b',
-    '              b',
+    '%             b',
     'a  ()   p  () b',
     'a       }     b',
     'ddddddddddddddd'
@@ -97,25 +97,25 @@ const maps = [
   [
     'ccccccccccccccccccccc',
     'a                   b',
-    'a         *     p   b',
+    '%         *     p   b',
     'a       ()  *      }b',
     'a     p ()          b',
     'a       ()  }       b',
     'a((((((((           b',
     'a    p ()    }    } b',
     'a      ()    *      b',
-    '           *        b',
+    'a          *        b',
     'a  $             p  b',
     'ddddddddddddddddddddd'
   ],
   [
     'ccccccccccccccccccccccccccccc',
     'a       ()      }           b',
-    'a       ()            p     b',
+    '%       ()            p     b',
     'a       ()   p  }           b',
     'a     p ()      )           b',
     'a       ()*****((((((((((  (b',
-    '       ()     (             b',
+    'a      ()     (             b',
     'a       ()     )            b',
     'a              (     **     b',
     'a       p                   b',
@@ -128,7 +128,7 @@ const maps = [
     'a (  )  (  )  ( b',
     'a               b',
     'a       p    m  b',
-    '                b',
+    '%               b',
     'a (  )  (  )  ( b',
     'a    p          b',
     'ddddddddddddddddd'
@@ -152,12 +152,12 @@ const maps = [
     '%': [k.sprite('left-door'), k.solid(), 'door'],
     '^': [k.sprite('top-door'), 'next-level',{scale:.8}],
     '$': [k.sprite('stairs'), 'next-level'],
-    '*': [k.sprite('slicer'), 'slicer', { dir: -1 }, 'dangerous'],
+    '*': [k.sprite('slicer'), 'slicer', { dir: -1, timer:0 }, 'dangerous'],
     '}': [k.sprite('skeletor'), k.solid(),'dangerous', 'skeletor', { dir: -1, timer: 0,scale:2 }],
-    ')': [k.sprite('lanterns'), k.solid()],
-    '(': [k.sprite('fire-pot'), k.solid()],
+    ')': [k.sprite('lanterns'), k.solid(),'wall'],
+    '(': [k.sprite('fire-pot'), k.solid(),'wall'],
     'm': [k.sprite('money'),'dangerous'],
-    'p': [k.sprite('cactus'), k.solid(),{scale:2}],
+    'p': [k.sprite('cactus'), k.solid(),'wall',{scale:2}],
 
   }
   k.addLevel(maps[level], levelCfg)
@@ -194,11 +194,14 @@ const maps = [
 
   
 
-
+  
 
   player.action(() => {
     player.resolve()
+
   })
+
+  
 
   player.overlaps('next-level', () => {
     k.go("game", {
@@ -262,6 +265,7 @@ const maps = [
 
   k.action('slicer', (s) => {
     s.move(s.dir * SLICER_SPEED, 0)
+    // s.resolve()
   })
 
   k.collides('slicer', 'wall', (s) => {
@@ -273,6 +277,7 @@ const maps = [
   k.action('skeletor', (s) => {
     s.move(0, s.dir * SKELETOR_SPEED)
     s.timer -= k.dt()
+    s.resolve()
     if (s.timer <= 0) {
       s.dir = - s.dir
       s.timer = k.rand(5)
