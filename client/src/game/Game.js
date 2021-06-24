@@ -191,10 +191,10 @@ const maps = [
     k.destroy(d)
   })
 
-  k.collides('kaboom', 'skeletor', (k, s) => {
+  k.collides('kaboom', 'skeletor', ( j,s) => {
     k.camShake(4)
     k.wait(1, () => {
-      k.destroy(k)
+      k.destroy(j)
     })
     k.destroy(s)
     scoreLabel.value++
