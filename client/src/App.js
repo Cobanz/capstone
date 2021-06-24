@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route, Link} from "../node_modules/react-router-dom";
 
-
+import logo from "./SpaceCowboyLogo.png"
 import './App.css';
 import ScoresContainer from "./Score/ScoresContainer";
 import LandingPage from "./LandingPage/LandingPage";
@@ -57,18 +57,19 @@ class App extends React.Component{
 
      <Router>
       <div className="App">
-        <nav>
-          <ul className="navBar">
-            <li>
+        <nav className="nav-bar">
+          <ul className="nav-bar-ul">
+          <img  className="logo" src={logo}/>
+            <li className="nav-bar-ul-li a">
               <Link to="/">Login</Link>
             </li>
-            <li>
+            <li className="nav-bar-ul-li a">
               <Link to="/game">Game</Link>
             </li>
-            <li>
+            <li className="nav-bar-ul-li a">
               <Link to="/scores">Scores</Link>
             </li>
-            <li>
+            <li className="nav-bar-ul-li a">
               <Link to="/newUser">Create New Player</Link>
             </li>
          

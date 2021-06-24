@@ -44,7 +44,7 @@ const maps = [
     'a              b',
     'a      *       b',
     'a    (         b',
-    '%              b',
+    'a              b',
     'a              b',
     'a    (         b',
     'a   *          b',
@@ -74,18 +74,43 @@ const maps = [
     'xdddddddddddddz'
   ],
   [
-    'ycccccccccccccccccccccccw',
-    'a                      $b',
-    'a         *             b',
-    'a          *           }b',
-    'a                       b',
-    'a           }           b',
-    'a                       b',
-    'a            }        } b',
-    'a            *          b',
-    'a           *           b',
-    'a                       b',
-    'xdddddddddddddddddddddddz'
+    'ycccccccccccccccccccw',
+    'a                   b',
+    'a         *         b',
+    'a       ()  *      }b',
+    'a       ()          b',
+    'a       ()  }       b',
+    'a((((((((           b',
+    'a      ()    }    } b',
+    'a      ()    *      b',
+    'a           *       b',
+    'a  $                b',
+    'xdddddddddddddddddddz'
+  ],
+  [
+    'ycccccccccccccccccccccccccccw',
+    'a       ()      }           b',
+    'a       ()                  b',
+    'a       ()      }           b',
+    'a       ()      )           b',
+    'a       ()*****((((((((((  (b',
+    'a       ()     (            b',
+    'a       ()     )            b',
+    'a       ()     (     **     b',
+    'a       }      )            b',
+    'a              (           $b',
+    'xdddddddddddddddddddddddddddz'
+  ],
+  [
+    'ycccccccccccccccw',
+    'a               b',
+    'a (  )  (  )  ( b',
+    'a               b',
+    'a            m  b',
+    'a               b',
+    'a (  )  (  )  ( b',
+    'a               b',
+    'xdddddddddddddddz'
   ]
 
 ]
@@ -107,8 +132,8 @@ const maps = [
     '$': [k.sprite('stairs'), 'next-level'],
     '*': [k.sprite('slicer'), 'slicer', { dir: -1 }, 'dangerous'],
     '}': [k.sprite('skeletor'), 'dangerous', 'skeletor', { dir: -1, timer: 0 }],
-    ')': [k.sprite('lanterns'), k.solid()],
-    '(': [k.sprite('fire-pot'), k.solid()],
+    ')': [k.sprite('lanterns'), k.solid(), 'wall'],
+    '(': [k.sprite('fire-pot'), k.solid(), ],
   }
   k.addLevel(maps[level], levelCfg)
 

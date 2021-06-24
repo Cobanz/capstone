@@ -9,7 +9,8 @@ class GameContainer extends React.Component{
 
     render() {
        return (
-       <div>
+       <div> Kill skeletons to gain points try and get to the end and then check your score vs the others!
+       <br/>
            {this.props.loggedIn? (gameStart()): "Please Log In To Play"}
        </div>
        )
