@@ -54,7 +54,9 @@ const audio= new Audio(gameSong)
 k.scene("game", ({ level, score }) => {
 
 
-// audio.play()
+
+audio.play()
+
 
 k.layers(['bg', 'obj', 'ui'], 'obj')
 
@@ -154,7 +156,7 @@ const maps = [
     'z': [k.sprite('bottom-right-wall'), k.solid(), 'wall'],
     '%': [k.sprite('left-door'), k.solid(), 'door'],
     '^': [k.sprite('top-door'), 'next-level',{scale:.8}],
-    '$': [k.sprite('stairs'), 'next-level'],
+    '$': [k.sprite('stairs'), 'next-level',{scale:1.5}],
     '*': [k.sprite('slicer'), 'slicer', { dir: -1, timer:0 }, 'dangerous'],
     '}': [k.sprite('skeletor'), k.solid(),'dangerous', 'skeletor', { dir: -1, timer: 0,scale:2 }],
     ')': [k.sprite('lanterns'), k.solid(),'wall'],

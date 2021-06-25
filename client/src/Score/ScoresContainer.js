@@ -1,5 +1,7 @@
 import React from 'react'
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+// import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import axios from 'axios';
+import Scores from './Scores'
 
 
 
@@ -15,62 +17,24 @@ class ScoresContainer extends React.Component{
     }
 
    componentDidMount(){
-    fetch('/me')
-    .then(res=> res.json())
-    .then(data => this.setState({
-        id: data.id,
-        role: data.role
-    }))
-   
-    // {this.getScores()}
+    // fetch('/me')
+    // .then(res=> res.json())
+    // .then(data => this.setState({
+    //     id: data.id,
+    //     role: data.role
+    // }))
 
-            // this.getScores()
+    axios.get(`/me`)
+    .then(res => {
+      const data = res.data;
+      this.setState({ id:data.id,
+                      role:data.role});
+    })
 
 
     }
 
-    getScores = () => {
-        const userId = this.state.id
-        if (this.state.scores.length < 1) {
-            if (this.state.role === 'admin') {
-                console.log('im admin')
-                  fetch('/score')
-                .then(res=> res.json())
-                .then(data => this.setState({
-                    scores: data
-                }))
 
-            } else {
-                console.log('im Not admin')
-                fetch(`/score/${userId}`)
-                    .then(res => res.json())
-                    .then(data => this.setState({
-                        scores: data
-                    }))
-            }
-   }
-   }
-
-   handleDelete(scoreObject){
-
-    let newArr=this.state.scores.filter(score=>score!=scoreObject)
-    this.setState({
-        scores:newArr
-    })
-        
-      fetch(`/deletescore/${scoreObject.id}`,{
-          method: "DELETE",
-          headers:{
-            'Content-Type': 'application/json'
-          }
-        })
-        .then(res =>res.json())
-        .then((newScore) => this.setState({scores:newArr}) )
-      
-    
-    // console.log(userId)
-
-   }
 
 
 
@@ -79,34 +43,10 @@ class ScoresContainer extends React.Component{
 
         return (
             <div>
-                {/*put ()  after getScore */}
-                {this.getScores()}
-            <MDBTable>
-      <MDBTableHead>
-        <tr>
-          <th scope='col'>#</th>
-          <th scope='col'>Username</th>
-          <th scope='col'>Score</th>
-        </tr>
-      </MDBTableHead>
-      <MDBTableBody>
-      
-
-      {this.state.scores.map(score=>{
-          
-                return(
-            <tr>
-                <th>{row++}</th>
-                <td>{score.user.name}</td>
-                <td>{score.score}</td>
-                {this.state.role==='admin'? 
-                <td onClick={()=>this.handleDelete(score)} >delete</td>:null}
-            </tr>
-                )
-            })}
-            
-      </MDBTableBody>
-    </MDBTable>
+                <Scores userId={this.state.id}
+                userRole={this.state.role}
+               />
+                
     </div>
     )
 }
