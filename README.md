@@ -160,3 +160,9 @@ brew install postgresql
 
 [awesome readmes]: https://github.com/matiassingers/awesome-readme
 [postgresql wsl]: https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-postgresql
+
+
+------------------------------------------------Build notes-----------------------------------------------------------------------------------------
+
+game runs on front end, just use the <rails start> command to get everything running first you will need to <db:migrate and db:seed>
+let me know what you think
