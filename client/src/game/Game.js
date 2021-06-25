@@ -54,84 +54,87 @@ const audio= new Audio(gameSong)
 k.scene("game", ({ level, score }) => {
 
 
-// audio.play()
+audio.play()
 
 k.layers(['bg', 'obj', 'ui'], 'obj')
 
 
 const maps = [
   [
-    ' ccccc^cccccccc ',
-    'a              b',
-    'a      *       b',
-    'a    (         b',
-    'a              b',
-    'a              b',
-    'a    (         b',
-    'a   *          b',
-    'a          p   b',
-    ' dddddddddddddd ',
-  ],
-  [
-    ' cccccccc ',
-    'a     p  b',
-    'a        b',
-    'a    $   b',
-    'a        b',
-    '%     p  b',
-    'a   }    b',
-    'a        b',
-    ' dddddddd ',
-  ],
-  [
-    'ccccccccccccccc',
-    'a             b',
-    'a  ((    p $( b',
-    'a         }   b',
-    'a     } *     b',
-    '%             b',
-    'a  ()   p  () b',
-    'a       }     b',
-    'ddddddddddddddd'
-  ],
-  [
-    'ycccccccccccccccccccw',
+    ' cccccccccccccccc^cc ',
     'a                   b',
-    'a         *         b',
+    'a      *            b',
+    'a    (      p       b',
+    '%         (         b',
+    'a    p  }           b',
+    'a    (              b',
+    'a   *               b',
+    'a          p        b',
+    ' ddddddddddddddddddd ',
+  ],
+  [
+    ' ccccccccccccccccccc ',
+    'a     p             b',
+    'a                   b',
+    'a                   b',
+    'a                   b',
+    '%     p             b',
+    'a   }           $   b',
+    'a                   b',
+    ' ddddddddddddddddddd ',
+  ],
+  [
+    'ccccccccccccccccccccc',
+    'a                   b',
+    'a  ((          p $( b',
+    'a         }         b',
+    'a     } *           b',
+    '%                   b',
+    'a  ()   p        () b',
+    'a       }           b',
+    'ddddddddddddddddddddd'
+  ],
+  [
+    'ccccccccccccccccccccc',
+    'a                   b',
+    'a    $    *     p   b',
     'a       ()  *      }b',
-    'a       ()          b',
+    'a     p ()          b',
     'a       ()  }       b',
     'a((((((((           b',
-    'a      ()    }    } b',
+    'a    p ()    }    } b',
     'a      ()    *      b',
-    'a           *       b',
-    'a  $                b',
-    'xdddddddddddddddddddz'
+    'a          *        b',
+    'a                   b',
+    'a                p  b',
+    '%        ()      p  b',
+    'a                   b',
+    'ddddddddddddddddddddd'
   ],
   [
-    'ycccccccccccccccccccccccccccw',
-    'a       ()      }           b',
-    'a       ()                  b',
-    'a       ()      }           b',
-    'a       ()      )           b',
-    'a       ()*****((((((((((  (b',
-    'a       ()     (            b',
-    'a       ()     )            b',
-    'a       ()     (     **     b',
-    'a       }      )            b',
-    'a              (           $b',
-    'xdddddddddddddddddddddddddddz'
+    'cccccccccccccccccccccccc',
+    'apppp()    }           b',
+    'a    ()                b',
+    'a    ()    }           b',
+    'a    ()    )           b',
+    'a    ()***((((((((((  (b',
+    'a    ()   (            b',
+    'a    ()   )            b',
+    'a         (     **     b',
+    '%         )            b',
+    'a         (       p   $b',
+    'dddddddddddddddddddddddd'
   ],
   [
-    'ycccccccccccccccw',
-    'a               b',
+    'ccccccccccccccccc',
+    'a    p        p b',
     'a (  )  (  )  ( b',
     'a               b',
     'a            m  b',
-    'a               b',
+    '%               b',
     'a (  )  (  )  ( b',
-    'a               b',
-    'xdddddddddddddddz'
+    'a    p          b',
+    'ddddddddddddddddd'
   ]
 ]
 
@@ -149,7 +152,7 @@ const maps = [
     'z': [k.sprite('bottom-right-wall'), k.solid(), 'wall'],
     '%': [k.sprite('left-door'), k.solid(), 'door'],
     '^': [k.sprite('top-door'), 'next-level',{scale:.8}],
-    '$': [k.sprite('stairs'), 'next-level'],
+    '$': [k.sprite('stairs'), 'next-level',{scale:1.5}],
     '*': [k.sprite('slicer'), 'slicer', { dir: -1, timer:0 }, 'dangerous'],
     '}': [k.sprite('skeletor'), k.solid(),'dangerous', 'skeletor', { dir: -1, timer: 0,scale:2 }],
     ')': [k.sprite('lanterns'), k.solid(),'wall'],
