@@ -13,7 +13,6 @@ class ScoresContainer extends React.Component{
 
         
     }
-  
 
    componentDidMount(){
     fetch('/me')
@@ -25,13 +24,15 @@ class ScoresContainer extends React.Component{
    
     // {this.getScores()}
 
-     
-   }
+            // this.getScores()
 
-   getScores=()=>{
-            const userId= this.state.id
-            if(this.state.scores.length<1){
-                if(this.state.role=='admin'){
+
+    }
+
+    getScores = () => {
+        const userId = this.state.id
+        if (this.state.scores.length < 1) {
+            if (this.state.role === 'admin') {
                 console.log('im admin')
                   fetch('/score')
                 .then(res=> res.json())
@@ -39,10 +40,10 @@ class ScoresContainer extends React.Component{
                     scores: data
                 }))
 
-            }else{
+            } else {
                 console.log('im Not admin')
                 fetch(`/score/${userId}`)
-                    .then(res=> res.json())
+                    .then(res => res.json())
                     .then(data => this.setState({
                         scores: data
                     }))
@@ -74,7 +75,7 @@ class ScoresContainer extends React.Component{
 
 
     render() {
-        let row=1
+        let row = 1
 
         return (
             <div>
@@ -111,4 +112,4 @@ class ScoresContainer extends React.Component{
 }
 }
 
-export default ScoresContainer 
+export default ScoresContainer

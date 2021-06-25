@@ -64,9 +64,9 @@ const maps = [
     ' ccccc^cccccccc ',
     'a              b',
     'a      *       b',
-    'a    (      p  b',
-    '%         (    b',
-    'a    p  }      b',
+    'a    (         b',
+    'a              b',
+    'a              b',
     'a    (         b',
     'a   *          b',
     'a          p   b',
@@ -95,47 +95,45 @@ const maps = [
     'ddddddddddddddd'
   ],
   [
-    'ccccccccccccccccccccc',
+    'ycccccccccccccccccccw',
     'a                   b',
-    '%         *     p   b',
+    'a         *         b',
     'a       ()  *      }b',
-    'a     p ()          b',
+    'a       ()          b',
     'a       ()  }       b',
     'a((((((((           b',
-    'a    p ()    }    } b',
+    'a      ()    }    } b',
     'a      ()    *      b',
-    'a          *        b',
-    'a  $             p  b',
-    'ddddddddddddddddddddd'
+    'a           *       b',
+    'a  $                b',
+    'xdddddddddddddddddddz'
   ],
   [
-    'ccccccccccccccccccccccccccccc',
+    'ycccccccccccccccccccccccccccw',
     'a       ()      }           b',
-    '%       ()            p     b',
-    'a       ()   p  }           b',
-    'a     p ()      )           b',
+    'a       ()                  b',
+    'a       ()      }           b',
+    'a       ()      )           b',
     'a       ()*****((((((((((  (b',
-    'a      ()     (             b',
+    'a       ()     (            b',
     'a       ()     )            b',
-    'a              (     **     b',
-    'a       p                   b',
-    'a                      p   $b',
-    'ddddddddddddddddddddddddddddd'
+    'a       ()     (     **     b',
+    'a       }      )            b',
+    'a              (           $b',
+    'xdddddddddddddddddddddddddddz'
   ],
   [
-    'ccccccccccccccccc',
-    'a    p        p b',
+    'ycccccccccccccccw',
+    'a               b',
     'a (  )  (  )  ( b',
     'a               b',
-    'a       p    m  b',
-    '%               b',
+    'a            m  b',
+    'a               b',
     'a (  )  (  )  ( b',
-    'a    p          b',
-    'ddddddddddddddddd'
+    'a               b',
+    'xdddddddddddddddz'
   ]
 ]
-
-
 
 
   const levelCfg = {
@@ -170,7 +168,7 @@ const maps = [
 ])
   
 
-   const scoreLabel = k.add([
+  const scoreLabel = k.add([
     k.text(score),
     k.pos(400, 450),
     k.layer('ui'),
@@ -181,14 +179,14 @@ const maps = [
   ])
 
   k.add([k.text('level ' + parseInt(level + 1)), k.pos(400, 485), k.scale(2)])
-  
+
   const player = k.add([
     k.sprite('link-going-right'),
     k.pos(5, 190),
     k.scale(1.5),
     {
       // right by default
-      dir: k.vec2(1,0),
+      dir: k.vec2(1, 0),
     }
   ])
 
@@ -214,25 +212,25 @@ const maps = [
   k.keyDown('left', () => {
     player.changeSprite('link-going-left')
     player.move(-MOVE_SPEED, 0)
-    player.dir = k.vec2(-1,0)
+    player.dir = k.vec2(-1, 0)
   })
 
   k.keyDown('right', () => {
     player.changeSprite('link-going-right')
     player.move(MOVE_SPEED, 0)
-    player.dir = k.vec2(1,0)
+    player.dir = k.vec2(1, 0)
   })
 
   k.keyDown('up', () => {
     player.changeSprite('link-going-up')
     player.move(0, -MOVE_SPEED)
-    player.dir = k.vec2(0,-1)
+    player.dir = k.vec2(0, -1)
   })
 
   k.keyDown('down', () => {
     player.changeSprite('link-going-down')
     player.move(0, MOVE_SPEED)
-    player.dir = k.vec2(0,1)
+    player.dir = k.vec2(0, 1)
   })
 
   function spawnKaboom(p) {
@@ -250,7 +248,7 @@ const maps = [
     k.destroy(d)
   })
 
-  k.collides('kaboom', 'skeletor', (j, s) => {
+  k.collides('kaboom', 'skeletor', ( j,s) => {
     k.camShake(4)
     k.wait(1, () => {
       k.destroy(j)
@@ -305,10 +303,9 @@ const maps = [
 
 
 k.scene("lose", ({ score }) => {
-  k.add([k.text(score, 32), origin('center'), k.pos(k.width()/ 2, k.height() /2)])
+  k.add([k.text(score, 32), origin('center'), k.pos(k.width() / 2, k.height() / 2)])
 
-// k.go('hello-world')
-
+  // k.go('hello-world')
 
 })
 
@@ -337,6 +334,6 @@ function addScore(score){
 
 
 
-export const gameStart = () => {k.start("game", { level: 0, score: 0})}
+export const gameStart = () => { k.start("game", { level: 0, score: 0 }) }
 
 
