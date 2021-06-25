@@ -54,7 +54,9 @@ const audio= new Audio(gameSong)
 k.scene("game", ({ level, score }) => {
 
 
+
 audio.play()
+
 
 k.layers(['bg', 'obj', 'ui'], 'obj')
 
@@ -139,6 +141,8 @@ const maps = [
 ]
 
 
+
+
   const levelCfg = {
     width: 63,
     height: 48,
@@ -171,7 +175,7 @@ const maps = [
 ])
   
 
-  const scoreLabel = k.add([
+   const scoreLabel = k.add([
     k.text(score),
     k.pos(400, 450),
     k.layer('ui'),
@@ -251,7 +255,7 @@ const maps = [
     k.destroy(d)
   })
 
-  k.collides('kaboom', 'skeletor', ( j,s) => {
+  k.collides('kaboom', 'skeletor', (j, s) => {
     k.camShake(4)
     k.wait(1, () => {
       k.destroy(j)
