@@ -166,3 +166,4 @@ brew install postgresql
 
 game runs on front end, just use the <= Rails Start => command to get everything running first you will need to <db:migrate and db:seed>
 let me know what you think
+# capstone
